@@ -47,4 +47,5 @@ var friendsArray = [
 "5"
 ]
 },
+]
 module.exports = friendsArray;

@@ -1,6 +1,6 @@
 
 var friendsData     = require('../data/friends.js');
-var path      = require('path');
+// var path      = require('path');
 
 
 // ROUTING
@@ -19,17 +19,19 @@ module.exports = function(app){
     var bestMatch = 0;
     var bestDiff = 1000; 
 
-
+    // since friendsData is an array you can just use the native `.forEach` method here
+    // this creates a functional closure/scope that won't leak variables.
     for (var i = friendsData.length - 1; i >= 0; i--) {
 
       console.log("comparing with " + friendsData[i].name);
 
       var totalDifference = 0;
 
-
+      // you can also use forEach to loop over the scores array
       for (var k = 0; k < 2; k++ ){
 
-        totalDifference = totalDifference + Math.abs(friendsData[i].scores[k] - req.body.scores[k]);
+        // using the `+=` shorthand saves you a few key strokes here
+        totalDifference += Math.abs(friendsData[i].scores[k] - req.body.scores[k]);
 
       }
 
